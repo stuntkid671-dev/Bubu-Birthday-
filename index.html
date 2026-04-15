@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday Bubu ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: white;
+      text-align: center;
+    }
+
+    .box {
+      margin-top: 30px;
+      background: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 20px;
+      display: inline-block;
+      width: 90%;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 20px;
+      margin: 10px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #text {
+      font-size: 18px;
+      margin-top: 15px;
+      min-height: 150px;
+    }
+
+    /* 💖 Hearts */
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: red;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% {transform: translateY(0); opacity: 1;}
+      100% {transform: translateY(-100vh); opacity: 0;}
+    }
+
+    /* 🎂 Cake animation */
+    .cake {
+      font-size: 60px;
+      margin-top: 10px;
+      animation: bounce 1s infinite;
+      display: none;
+    }
+
+    @keyframes bounce {
+      0%,100% {transform: translateY(0);}
+      50% {transform: translateY(-10px);}
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- 🎶 Music -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9bdb0b.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+  <h1>🎂 Happy Birthday Bubu ❤️</h1>
+
+  <!-- 💑 Couple Cartoon -->
+  <img src="https://i.imgur.com/6VBx3io.png">
+
+  <!-- 🎂 Cake -->
+  <div id="cake" class="cake">🎂</div>
+
+  <!-- 💌 Typing -->
+  <div id="text"></div>
+
+  <!-- 🎁 Button -->
+  <button class="btn" onclick="startLove()">🎁 Click me Bubu 😍</button>
+</div>
+
+<script>
+  const message = `Dear Madhusmita (my cute Bubu),
+
+Aaj ka din duniya ka sabse special din hai...
+kyunki aaj meri life ka sabse important person paida hua tha 💖
+
+Tu meri happiness hai, meri habit hai,
+aur thodi si meri problem bhi 😜
+
+Main tujhe bahut zyada pyaar karta hoon ❤️
+
+Happy Birthday meri Bubu ❤️
+Forever yours,
+Puchu (Arav) 💕`;
+
+  let i = 0;
+
+  function typeWriter() {
+    if (i < message.length) {
+      document.getElementById("text").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typeWriter, 40);
+    }
+  }
+
+  function startLove() {
+    document.getElementById("music").play();
+    document.getElementById("cake").style.display = "block";
+    typeWriter();
+    createHearts();
+  }
+
+  function createHearts() {
+    setInterval(() => {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
