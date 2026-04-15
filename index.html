@@ -17,23 +17,21 @@
       height: 100vh;
       flex-direction: column;
 
-      /* 🌌 Dark Night Gradient */
       background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
     }
 
     h1 {
       font-size: 42px;
-      margin-bottom: 10px;
       text-shadow: 0 0 10px #ff4d6d;
     }
 
-    /* 💖 Glowing Photo */
+    /* 🐻 Bear */
     img {
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      border: 3px solid #fff;
       object-fit: cover;
+      border: 3px solid white;
 
       box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d, 0 0 60px #ff4d6d;
       animation: glow 2s infinite alternate;
@@ -48,8 +46,6 @@
       font-size: 20px;
       margin-top: 20px;
       max-width: 90%;
-      line-height: 1.6;
-      text-shadow: 0 0 5px #000;
     }
 
     .btn {
@@ -59,56 +55,24 @@
       border-radius: 30px;
       background: #ff4d6d;
       color: white;
-      cursor: pointer;
       margin-top: 25px;
-      font-weight: bold;
-      box-shadow: 0 0 15px #ff4d6d;
+      cursor: pointer;
     }
 
     .cake {
       font-size: 70px;
-      margin-top: 15px;
-      animation: bounce 1s infinite;
       display: none;
+      animation: bounce 1s infinite;
     }
 
     @keyframes bounce {
-      0%,100% {transform: translateY(0);}
       50% {transform: translateY(-10px);}
-    }
-
-    /* ❤️ Hearts */
-    .heart {
-      position: absolute;
-      bottom: -10px;
-      animation: float 5s linear infinite;
-    }
-
-    @keyframes float {
-      0% {transform: translateY(0); opacity: 1;}
-      100% {transform: translateY(-100vh); opacity: 0;}
-    }
-
-    /* 🌟 Stars */
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      animation: twinkle 2s infinite alternate;
-    }
-
-    @keyframes twinkle {
-      from {opacity: 0.2;}
-      to {opacity: 1;}
     }
 
     /* 💌 Popup */
     .popup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.85);
@@ -121,20 +85,7 @@
       color: #ff4d6d;
       padding: 25px;
       border-radius: 20px;
-      text-align: center;
       width: 80%;
-      font-size: 20px;
-      box-shadow: 0 0 20px #ff4d6d;
-    }
-
-    .popup-content button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #ff4d6d;
-      color: white;
-      font-size: 16px;
     }
   </style>
 </head>
@@ -147,7 +98,8 @@
 
 <h1>🌙 Happy Birthday Bubu ❤️</h1>
 
-<img src="https://drive.google.com/uc?export=view&id=1FOWIKVlVn_3VOhmIiHzCsi6ZUKiUeQ9V">
+<!-- 🐻 Bear Image -->
+<img id="bear" src="https://media.tenor.com/8Q2b8V3YkXcAAAAi/milk-and-mocha-bear-couple.gif">
 
 <div id="cake" class="cake">🎂</div>
 
@@ -158,21 +110,20 @@
 <!-- 💌 Popup -->
 <div id="popup" class="popup">
   <div class="popup-content">
-    💖 Tum meri life ka sabse beautiful part ho ❤️<br><br>
-    Main hamesha tumse pyaar karta rahunga 💕<br>
-    You are my moon in my dark sky 🌙✨
+    💖 You are my everything ❤️<br><br>
+    I love you forever 💕
     <br><br>
     <button onclick="closePopup()">Close ❤️</button>
   </div>
 </div>
 
 <script>
-  const message = `Dear Madhusmita (my cute Bubu),
+  const message = `Dear Bubu,
 
 Tu meri duniya hai ❤️  
 Main tujhe bahut zyada pyaar karta hoon 💕  
 
-Happy Birthday meri jaan 🌙💖`;
+Happy Birthday meri jaan 💖`;
 
   let i = 0;
 
@@ -188,37 +139,17 @@ Happy Birthday meri jaan 🌙💖`;
     document.getElementById("music").play();
     document.getElementById("cake").style.display = "block";
     document.getElementById("popup").style.display = "flex";
+
+    /* 💋 Change to kissing bear */
+    document.getElementById("bear").src =
+      "https://media.tenor.com/5WVq7S0f3bEAAAAi/milk-and-mocha-kiss.gif";
+
     typeWriter();
-    createHearts();
   }
 
   function closePopup() {
     document.getElementById("popup").style.display = "none";
   }
-
-  function createHearts() {
-    setInterval(() => {
-      let heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 5000);
-    }, 300);
-  }
-
-  /* 🌟 Stars generator */
-  setInterval(() => {
-    let star = document.createElement("div");
-    star.className = "star";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.top = Math.random() * 100 + "vh";
-    document.body.appendChild(star);
-
-    setTimeout(() => star.remove(), 2000);
-  }, 100);
 </script>
 
 </body>
