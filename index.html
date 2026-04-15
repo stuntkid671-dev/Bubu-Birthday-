@@ -27,6 +27,18 @@
       text-shadow: 0 0 15px #ff4d6d;
     }
 
+    /* ✨ Glowing name */
+    .name {
+      font-size: 40px;
+      color: #ff4d6d;
+      animation: glowText 1.5s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #ff4d6d; }
+      to { text-shadow: 0 0 30px #ff85a2, 0 0 60px #ff4d6d; }
+    }
+
     img {
       width: 260px;
       height: 260px;
@@ -90,17 +102,36 @@
       font-size: 24px;
     }
 
+    /* 💕 Hearts */
     .heart {
       position: fixed;
       bottom: -10px;
       font-size: 20px;
       animation: floatUp 5s linear infinite;
-      opacity: 0.7;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 0.7; }
-      100% { transform: translateY(-100vh); opacity: 0; }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    /* 🎆 Firework dots */
+    .spark {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      background: #ff4d6d;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -111,21 +142,21 @@
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9bdb0b.mp3">
 </audio>
 
-<h1>🌙 Happy Birthday Bubu ❤️</h1>
+<h1>🌙 Happy Birthday</h1>
+<div class="name">Bubu (Madhusmita) ❤️</div>
 
-<img id="bear" src="https://i.imgur.com/8Km9tLL.gif">
+<img id="bear" src="https://media.tenor.com/W6XKX7X0Q0EAAAAi/bubu-dudu.gif">
 
 <div id="cake" class="cake">🎂</div>
 
 <div id="text"></div>
 
-<button class="btn" onclick="startLove()">🎁 Click me Bubu 😍</button>
+<button class="btn" onclick="startLove()">🎁 Click me 😍</button>
 
 <div id="popup" class="popup">
   <div class="popup-content">
     💖 You are my everything ❤️<br><br>
-    I love you forever 💕
-    <br><br>
+    I love you forever 💕<br><br>
     <button onclick="closePopup()">Close ❤️</button>
   </div>
 </div>
@@ -154,13 +185,24 @@ Happy Birthday meri jaan 💖`;
       heart.className = "heart";
       heart.innerHTML = "💖";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 25 + 15) + "px";
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
+      setTimeout(() => heart.remove(), 5000);
     }, 300);
+  }
+
+  function fireworks() {
+    for (let i = 0; i < 30; i++) {
+      const spark = document.createElement("div");
+      spark.className = "spark";
+      spark.style.left = "50%";
+      spark.style.top = "50%";
+      spark.style.setProperty("--x", (Math.random()*200-100)+"px");
+      spark.style.setProperty("--y", (Math.random()*200-100)+"px");
+      document.body.appendChild(spark);
+
+      setTimeout(() => spark.remove(), 1000);
+    }
   }
 
   function startLove() {
@@ -169,10 +211,11 @@ Happy Birthday meri jaan 💖`;
     document.getElementById("popup").style.display = "flex";
 
     document.getElementById("bear").src =
-      "https://i.imgur.com/QZ6YH6n.gif";
+      "https://media.tenor.com/9s1gZK1w3XgAAAAi/bubu-dudu-kiss.gif";
 
     typeWriter();
     createHearts();
+    fireworks();
   }
 
   function closePopup() {
