@@ -3,6 +3,9 @@
 <head>
   <title>Happy Birthday Bubu ❤️</title>
 
+  <!-- 🌸 Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -25,7 +28,6 @@
       text-shadow: 0 0 10px #ff4d6d;
     }
 
-    /* 🐻 Bear */
     img {
       width: 230px;
       height: 230px;
@@ -46,6 +48,7 @@
       font-size: 20px;
       margin-top: 20px;
       max-width: 90%;
+      white-space: pre-line;
     }
 
     .btn {
@@ -66,10 +69,9 @@
     }
 
     @keyframes bounce {
-      50% {transform: translateY(-10px);}
+      50% { transform: translateY(-10px); }
     }
 
-    /* 💌 Popup */
     .popup {
       display: none;
       position: fixed;
@@ -98,7 +100,6 @@
 
 <h1>🌙 Happy Birthday Bubu ❤️</h1>
 
-<!-- 🐻 Bear Image -->
 <img id="bear" src="https://media.tenor.com/8Q2b8V3YkXcAAAAi/milk-and-mocha-bear-couple.gif">
 
 <div id="cake" class="cake">🎂</div>
@@ -107,7 +108,6 @@
 
 <button class="btn" onclick="startLove()">🎁 Click me Bubu 😍</button>
 
-<!-- 💌 Popup -->
 <div id="popup" class="popup">
   <div class="popup-content">
     💖 You are my everything ❤️<br><br>
@@ -136,11 +136,10 @@ Happy Birthday meri jaan 💖`;
   }
 
   function startLove() {
-    document.getElementById("music").play();
+    document.getElementById("music").play().catch(() => {});
     document.getElementById("cake").style.display = "block";
     document.getElementById("popup").style.display = "flex";
 
-    /* 💋 Change to kissing bear */
     document.getElementById("bear").src =
       "https://media.tenor.com/5WVq7S0f3bEAAAAi/milk-and-mocha-kiss.gif";
 
@@ -150,6 +149,10 @@ Happy Birthday meri jaan 💖`;
   function closePopup() {
     document.getElementById("popup").style.display = "none";
   }
+
+  window.onload = () => {
+    setTimeout(startLove, 1000);
+  };
 </script>
 
 </body>
