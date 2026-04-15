@@ -22,10 +22,26 @@
       width: 90%;
     }
 
+    /* 💖 Glowing Photo */
     img {
       width: 200px;
-      border-radius: 20px;
+      height: 200px;
+      border-radius: 50%;
       margin: 10px;
+      border: 4px solid white;
+      object-fit: cover;
+
+      box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d, 0 0 60px #ff4d6d;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+      }
+      100% {
+        box-shadow: 0 0 25px #ff85a2, 0 0 50px #ff4d6d, 0 0 75px #ff4d6d;
+      }
     }
 
     .btn {
@@ -45,7 +61,6 @@
       min-height: 150px;
     }
 
-    /* 💖 Hearts */
     .heart {
       position: absolute;
       bottom: -10px;
@@ -58,7 +73,6 @@
       100% {transform: translateY(-100vh); opacity: 0;}
     }
 
-    /* 🎂 Cake animation */
     .cake {
       font-size: 60px;
       margin-top: 10px;
@@ -71,12 +85,48 @@
       50% {transform: translateY(-10px);}
     }
 
+    /* 💌 Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: white;
+      color: #ff4d6d;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      width: 80%;
+      animation: pop 0.4s ease;
+    }
+
+    .popup-content button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+
+    @keyframes pop {
+      from {transform: scale(0.5); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
   </style>
 </head>
 
 <body>
 
-<!-- 🎶 Music -->
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9bdb0b.mp3" type="audio/mpeg">
 </audio>
@@ -84,17 +134,30 @@
 <div class="box">
   <h1>🎂 Happy Birthday Bubu ❤️</h1>
 
-  <!-- 💑 Couple Cartoon -->
-  <img src="https://i.imgur.com/6VBx3io.png">
+  <!-- ❤️ HER PHOTO -->
+  <img src="https://drive.google.com/uc?export=view&id=1FOWIKVlVn_3VOhmIiHzCsi6ZUKiUeQ9V">
 
   <!-- 🎂 Cake -->
   <div id="cake" class="cake">🎂</div>
 
-  <!-- 💌 Typing -->
+  <!-- 💌 Message -->
   <div id="text"></div>
 
   <!-- 🎁 Button -->
   <button class="btn" onclick="startLove()">🎁 Click me Bubu 😍</button>
+</div>
+
+<!-- 💌 Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2>💖 For You Bubu 💖</h2>
+    <p>
+      Tum meri life ka sabse beautiful part ho ❤️<br><br>
+      Main har din bas tumhe hi chahunga 💕<br>
+      Aur hamesha tumhare saath rahunga 💫
+    </p>
+    <button onclick="closePopup()">Close ❤️</button>
+  </div>
 </div>
 
 <script>
@@ -125,8 +188,13 @@ Puchu (Arav) 💕`;
   function startLove() {
     document.getElementById("music").play();
     document.getElementById("cake").style.display = "block";
+    document.getElementById("popup").style.display = "flex";
     typeWriter();
     createHearts();
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
   }
 
   function createHearts() {
